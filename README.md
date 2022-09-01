@@ -10,10 +10,11 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 #### 1. [Data](#data)
 - [Cusomer data](#customer-data)
 - [Product data](#product-data)
-#### 2. [Viết api lấy tất cả sản phẩm với điều kiện(LESS_THAN, GREATER_THAN, EUQAL) ](#Câu2)
+#### 2. [Viết api lấy tất cả sản phẩm với điều kiện(LESS_THAN, GREATER_THAN, EUQAL) ](#Câu 2)
 - [LESS_THAN](#lessthan)
 - [GREATER_THAN](#greater_than)
 - [EQUAL](#equal)
+- [Exception](#exception)
 #### 3. [Viết một api với chức năng thêm cart bằng tham số `customer_id` của Customer](#Câu3)
 #### 4. [Thực hiện gọi lại api số 3](#Câu4)
 #### 5. [Viết một api lấy danh sách thoong tin của item theo **Cart** theo tham số `customer_id`](#Câu5)
@@ -69,3 +70,109 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | 8          | giay real     | giay | 40   | 12       | 400000 |
 | 9          | giay nai ki   | giay | 39   | 0        | 300000 |
 | 10         | giay the thao | giay | 39   | 20       | 170000 |
+
+##
+
+## LESS_THAN
+    http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
+### Kết quả
+```json
+{
+    "httpStatus": "OK",
+    "message": "Query data successfully",
+    "data": [
+        {
+            "product_id": 3,
+            "name_product": "ao phong2",
+            "type": "ao   ",
+            "size": "S  ",
+            "quantity": 12,
+            "price": 70000
+        },
+        {
+            "product_id": 2,
+            "name_product": "ao thun",
+            "type": "ao   ",
+            "size": "XL ",
+            "quantity": 31,
+            "price": 55000
+        }
+    ]
+}
+```
+
+## GREATER_THAN
+    http://localhost:8080/api/products/?price=490000&condition=GREATER_THAN
+### Kết quả
+```json
+{
+    "httpStatus": "OK",
+    "message": "Query data successfully",
+    "data": [
+        {
+            "product_id": 1,
+            "name_product": "ao phong",
+            "type": "ao   ",
+            "size": "L  ",
+            "quantity": 0,
+            "price": 500000
+        }
+    ]
+}
+```
+# Câu 2
+## EQUAL
+    http://localhost:8080/api/products/?price=120000&condition=EQUAL
+### Kết quả
+```json
+{
+    "httpStatus": "OK",
+    "message": "Query data successfully",
+    "data": [
+        {
+            "product_id": 4,
+            "name_product": "quan xanh",
+            "type": "quan ",
+            "size": "L  ",
+            "quantity": 44,
+            "price": 120000
+        },
+        {
+            "product_id": 7,
+            "name_product": "giay fake",
+            "type": "giay ",
+            "size": "36 ",
+            "quantity": 44,
+            "price": 120000
+        }
+    ]
+}
+```
+## Exception
+### Không tìm thấy
+    http://localhost:8080/api/products/?price=1000&condition=EQUAL
+### Kết quả
+```json
+{
+    "httpStatus": "NOT_FOUND",
+    "data": "Product not exists"
+}
+```
+### Giá tiền khôn hợp lệ
+    http://localhost:8080/api/products/?price=-1&condition=EQUAL
+### Kết quả
+```json
+{
+    "httpStatus": "BAD_REQUEST",
+    "data": "price = -1 argument invalid"
+}
+```
+### Diều kiện không hợp lệ
+    http://localhost:8080/api/products/?price=10000&condition=EQUALL
+### Kết quả
+```json
+{
+    "httpStatus": "BAD_REQUEST",
+    "data": "Condition = EQUALL argument invalid"
+}
+```
