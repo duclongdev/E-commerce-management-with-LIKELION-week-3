@@ -1,25 +1,41 @@
 # E-commerce
 
 Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce
+
 # Mục lục
+
 ## [Tables](#tables)
+
 - [Customer](#1-customer)
 - [Product](#2-product)
 - [Cart](#3-cart)
 - [Cart_item](#4-cart_item)
+
 ## 1. [Data](#data)
+
 - [Cusomer data](#customer-data)
 - [Product data](#product-data)
+
 ## 2. [Viết api lấy tất cả sản phẩm với điều kiện(LESS_THAN, GREATER_THAN, EUQAL) ](#Câu-2)
+
 - [LESS_THAN](#less_than)
 - [GREATER_THAN](#greater_than)
 - [EQUAL](#equal)
 - [Exception](#exception)
+
 ## 3. [Viết một api với chức năng thêm cart bằng tham số `customer_id` của Customer](#Câu-3)
+- [Thêm danh sách sản phẩm (product_id, quantity) vào cart với đối số truyền vào là customer_id](#thêm-danh-sách-sản-phẩm-product_id-quantity-vào-cart-với-đối-số-truyền-vào-là-customer_id)
+- [Update cart_id vào customer](#update-cart_id-vào-customer)
+- [Exception](#exception-1)
+
 ## 4. [Thực hiện gọi lại api số 3](#Câu-4)
+
 ## 5. [Viết một api lấy danh sách thoong tin của item theo **Cart** theo tham số `customer_id`](#Câu-5)
+
 # Tables
+
 ### 1. Customer
+
 | Column            | Type                     | Nullable |
 | :---------------- | ------------------------ | -------- |
 | **`customer_id`** | `integer `               | not null |
@@ -27,7 +43,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | `address`         | `character varying(100)` |          |
 | `phone_no`        | `character(20)`          | not null |
 | `cart_id`         | `integer`                |          |
+
 ### 2. Product
+
 | Column           | Type                     | Nullable |
 | :--------------- | :----------------------- | :------- |
 | **`product_id`** | `integer`                | not null |
@@ -36,11 +54,15 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | `size`           | `character(3)`           |          |
 | `quantity`       | `integer`                | not null |
 | `price`          | `numeric`                |          |
+
 ### 3. Cart
+
 | Column        | Type      | Nullable |
 | :------------ | :-------- | :------- |
 | **`cart_id`** | `integer` | not null |
+
 ### 4. Cart_item
+
 | Column            | Type        | Nullable |
 | :---------------- | :---------- | :------- |
 | **`cart_id`**     | `integer`   | not null |
@@ -48,8 +70,11 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | `quantity_wished` | `integer`   | not null |
 | `date_added`      | `timestamp` | not null |
 | `total_amount`    | `numeric`   | not null |
+
 ## Data
+
 ## Customer data
+
 | customer_id | customer_name   | address    | phone_no   | cart_id |
 | ----------- | --------------- | ---------- | ---------- | ------- |
 | 1           | Nguyen Duc Long | Quang Binh | 0906592672 |         |
@@ -57,7 +82,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | 3           | Nguyen Thi B    | Ha Noi     | 0908070605 |         |
 | 4           | Le Thi D        | Da Nang    | 0903221122 |         |
 | 5           | Tran Van C      | Hai Phong  | 0911223344 |         |
+
 ## Product data
+
 | product_id | name_product  | type | size | quantity | price  |
 | ---------- | ------------- | ---- | ---- | -------- | ------ |
 | 1          | ao phong      | ao   | L    | 3        | 500000 |
@@ -72,235 +99,282 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | 10         | giay the thao | giay | 39   | 20       | 170000 |
 
 # Câu 2
+
 ## LESS_THAN
+
     http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
+
 ### Kết quả
+
 ```json
 {
-    "httpStatus": "OK",
-    "message": "Query data successfully",
-    "data": [
-        {
-            "product_id": 3,
-            "name_product": "ao phong2",
-            "type": "ao   ",
-            "size": "S  ",
-            "quantity": 12,
-            "price": 70000
-        },
-        {
-            "product_id": 2,
-            "name_product": "ao thun",
-            "type": "ao   ",
-            "size": "XL ",
-            "quantity": 31,
-            "price": 55000
-        }
-    ]
+  "httpStatus": "OK",
+  "message": "Query data successfully",
+  "data": [
+    {
+      "product_id": 3,
+      "name_product": "ao phong2",
+      "type": "ao   ",
+      "size": "S  ",
+      "quantity": 12,
+      "price": 70000
+    },
+    {
+      "product_id": 2,
+      "name_product": "ao thun",
+      "type": "ao   ",
+      "size": "XL ",
+      "quantity": 31,
+      "price": 55000
+    }
+  ]
 }
 ```
 
 ## GREATER_THAN
+
     http://localhost:8080/api/products/?price=490000&condition=GREATER_THAN
+
 ### Kết quả
+
 ```json
 {
-    "httpStatus": "OK",
-    "message": "Query data successfully",
-    "data": [
-        {
-            "product_id": 1,
-            "name_product": "ao phong",
-            "type": "ao   ",
-            "size": "L  ",
-            "quantity": 0,
-            "price": 500000
-        }
-    ]
+  "httpStatus": "OK",
+  "message": "Query data successfully",
+  "data": [
+    {
+      "product_id": 1,
+      "name_product": "ao phong",
+      "type": "ao   ",
+      "size": "L  ",
+      "quantity": 0,
+      "price": 500000
+    }
+  ]
 }
 ```
+
 ## EQUAL
+
     http://localhost:8080/api/products/?price=120000&condition=EQUAL
+
 ### Kết quả
+
 ```json
 {
-    "httpStatus": "OK",
-    "message": "Query data successfully",
-    "data": [
-        {
-            "product_id": 4,
-            "name_product": "quan xanh",
-            "type": "quan ",
-            "size": "L  ",
-            "quantity": 44,
-            "price": 120000
-        },
-        {
-            "product_id": 7,
-            "name_product": "giay fake",
-            "type": "giay ",
-            "size": "36 ",
-            "quantity": 44,
-            "price": 120000
-        }
-    ]
+  "httpStatus": "OK",
+  "message": "Query data successfully",
+  "data": [
+    {
+      "product_id": 4,
+      "name_product": "quan xanh",
+      "type": "quan ",
+      "size": "L  ",
+      "quantity": 44,
+      "price": 120000
+    },
+    {
+      "product_id": 7,
+      "name_product": "giay fake",
+      "type": "giay ",
+      "size": "36 ",
+      "quantity": 44,
+      "price": 120000
+    }
+  ]
 }
 ```
+
 ## Exception
+
 ### 1. Không tìm thấy
+
     http://localhost:8080/api/products/?price=1000&condition=EQUAL
+
 #### Kết quả
+
 ```json
 {
-    "httpStatus": "NOT_FOUND",
-    "data": "Product not exists"
+  "httpStatus": "NOT_FOUND",
+  "data": "Product not exists"
 }
 ```
+
 ### 2. Giá tiền không hợp lệ
+
     http://localhost:8080/api/products/?price=-1&condition=EQUAL
+
 #### Kết quả
+
 ```json
 {
-    "httpStatus": "BAD_REQUEST",
-    "data": "price = -1 argument invalid"
+  "httpStatus": "BAD_REQUEST",
+  "data": "price = -1 argument invalid"
 }
 ```
+
 ### 3. Điều kiện không hợp lệ
+
     http://localhost:8080/api/products/?price=10000&condition=EQUALL
+
 #### Kết quả
+
 ```json
 {
-    "httpStatus": "BAD_REQUEST",
-    "data": "Condition = EQUALL argument invalid"
+  "httpStatus": "BAD_REQUEST",
+  "data": "Condition = EQUALL argument invalid"
 }
 ```
 
 # Câu 3
+
 ## Thêm danh sách sản phẩm (product_id, quantity) vào cart với đối số truyền vào là customer_id
 
 #### Request: http://localhost:8080/api/cart/5 (`customer_id = 5`)
 
 #### Request body:
+
 ```json
 [
-    {
-        "product_id": 7,
-        "quantity_wished": 1
-    },
-    {
-        "product_id": 3,
-        "quantity_wished": 2
-    }
+  {
+    "product_id": 7,
+    "quantity_wished": 1
+  },
+  {
+    "product_id": 3,
+    "quantity_wished": 2
+  }
 ]
 ```
+
 #### kết quả
+
 ```json
 {
-    "httpStatus": "OK",
-    "message": "Create cart successfully",
-    "data": [
-        {
-            "product_id": 7,
-            "cart_id": 5,
-            "quantity_wished": 1,
-            "total_amount": 120000
-        },
-        {
-            "product_id": 3,
-            "cart_id": 5,
-            "quantity_wished": 2,
-            "total_amount": 140000
-        }
-    ]
+  "httpStatus": "OK",
+  "message": "Create cart successfully",
+  "data": [
+    {
+      "product_id": 7,
+      "cart_id": 5,
+      "quantity_wished": 1,
+      "total_amount": 120000
+    },
+    {
+      "product_id": 3,
+      "cart_id": 5,
+      "quantity_wished": 2,
+      "total_amount": 140000
+    }
+  ]
 }
 ```
+
 ## Update `cart_id` vào customer
-```sql 
-select * from customer_where customer_id =5; 
+
+```sql
+select * from customer_where customer_id =5;
 ```
+
 #### Kết quả
-| customer_id | customer_name |  address  |       phone_no       | cart_id|
-|-------------|---------------|-----------|----------------------|---------|
-|           5 | Tran Van C    | Hai Phong | 0911223344           |       5|
+
+| customer_id | customer_name | address   | phone_no   | cart_id |
+| ----------- | ------------- | --------- | ---------- | ------- |
+| 5           | Tran Van C    | Hai Phong | 0911223344 | 5       |
 
 ## Exception
-### 1. Không tồn tại customer_id 
+
+### 1. Không tồn tại customer_id
 
 #### Request: http://localhost:8080/api/cart/100 (customer_id = 100)
+
 ```json
 {
-    "httpStatus": "NOT_FOUND",
-    "data": "Customer with id = 100 not exists"
+  "httpStatus": "NOT_FOUND",
+  "data": "Customer with id = 100 not exists"
 }
 ```
+
 ### 2. Số lượng sản phẩm không hợp lệ
 
 #### Request: http://localhost:8080/api/cart/5
+
 #### Request body
+
 ```json
 [
-    {
-        "product_id": 7,
-        "quantity_wished": 0
-    },
-    {
-        "product_id": 3,
-        "quantity_wished": 2
-    }
-] 
-```
-#### Kết quả
-```json
-{
-    "httpStatus": "BAD_REQUEST",
-    "data": "Quantity of Product with id = 7 must be greater than 0"
-}
-```
-
-### 3. Không tồn tại `product_id` 
-
-#### Request: http://localhost:8080/api/cart/5
-#### Request body
-```json
-[
-    {
-        "product_id": 11,
-        "quantity_wished": 2
-    },
-    {
-        "product_id": 3,
-        "quantity_wished": 2
-    }
+  {
+    "product_id": 7,
+    "quantity_wished": 0
+  },
+  {
+    "product_id": 3,
+    "quantity_wished": 2
+  }
 ]
 ```
+
 #### Kết quả
 
 ```json
 {
-    "httpStatus": "NOT_FOUND",
-    "data": "Product by id = 11 not exists"
+  "httpStatus": "BAD_REQUEST",
+  "data": "Quantity of Product with id = 7 must be greater than 0"
 }
 ```
+
+### 3. Không tồn tại `product_id`
+
+#### Request: http://localhost:8080/api/cart/5
+
+#### Request body
+
+```json
+[
+  {
+    "product_id": 11,
+    "quantity_wished": 2
+  },
+  {
+    "product_id": 3,
+    "quantity_wished": 2
+  }
+]
+```
+
+#### Kết quả
+
+```json
+{
+  "httpStatus": "NOT_FOUND",
+  "data": "Product by id = 11 not exists"
+}
+```
+
 ### 4. Out of stock!!!!
+
 #### Request: http://localhost:8080/api/cart/5
-#### Request body: 
+
+#### Request body:
+
 ```json
 [
-    {
-        "product_id": 1,
-        "quantity_wished": 4
-    },
-    {
-        "product_id": 3,
-        "quantity_wished": 2
-    }
+  {
+    "product_id": 1,
+    "quantity_wished": 4
+  },
+  {
+    "product_id": 3,
+    "quantity_wished": 2
+  }
 ]
 ```
+
 #### Kết quả
+
 ```json
 {
-    "httpStatus": "BAD_REQUEST",
-    "data": "Out of stock! quantity wished of product with id 1 must be less than 3"
+  "httpStatus": "BAD_REQUEST",
+  "data": "Out of stock! quantity wished of product with id 1 must be less than 3"
 }
 ```
-
