@@ -72,7 +72,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | 10         | giay the thao | giay | 39   | 20       | 170000 |
 
 # Câu 2
-## LESS_THAN
+## - LESS_THAN
     http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
 ### Kết quả
 ```json
@@ -100,7 +100,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 }
 ```
 
-## GREATER_THAN
+## - GREATER_THAN
     http://localhost:8080/api/products/?price=490000&condition=GREATER_THAN
 ### Kết quả
 ```json
@@ -119,7 +119,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
     ]
 }
 ```
-## EQUAL
+## - EQUAL
     http://localhost:8080/api/products/?price=120000&condition=EQUAL
 ### Kết quả
 ```json
@@ -146,7 +146,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
     ]
 }
 ```
-## Exception
+## - Exception
 ### Không tìm thấy
     http://localhost:8080/api/products/?price=1000&condition=EQUAL
 ### Kết quả
