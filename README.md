@@ -71,8 +71,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | 9          | giay nai ki   | giay | 39   | 0        | 300000 |
 | 10         | giay the thao | giay | 39   | 20       | 170000 |
 
-##
-
+# Câu 2
 ## LESS_THAN
     http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
 ### Kết quả
@@ -120,7 +119,6 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
     ]
 }
 ```
-# Câu 2
 ## EQUAL
     http://localhost:8080/api/products/?price=120000&condition=EQUAL
 ### Kết quả
