@@ -3,12 +3,12 @@
 Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce
 # Mục lục
 #### [Tables](#tables)
-- [Customer](#customer)
-- [Product](#product)
-- [Cart](#cart)
-- [Cart_item](###cart_item)
+- [Customer](#1-customer)
+- [Product](#2-product)
+- [Cart](#3-cart)
+- [Cart_item](#4-cart_item)
 #### 1. [Data](#data)
- - [Cusomer](#customer)
+ - [Cusomerr](#)
  - [Product](#product)
 #### 2. [Viết api lấy tất cả sản phẩm với điều kiện(LESS_THAN, GREATER_THAN, EUQAL) ](#Câu2)
 - [LESS_THAN](#lessthan)
