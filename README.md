@@ -24,6 +24,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 - [Exception](#exception)
 
 ## 3. [Viết một api với chức năng thêm cart bằng tham số `customer_id` của Customer](#Câu-3)
+
 - [Thêm danh sách sản phẩm (product_id, quantity) vào cart với đối số truyền vào là customer_id](#thêm-danh-sách-sản-phẩm-product_id-quantity-vào-cart-với-đối-số-truyền-vào-là-customer_id)
 - [Update cart_id vào customer](#update-cart_id-vào-customer)
 - [Exception](#exception-1)
@@ -71,9 +72,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | `date_added`      | `timestamp` | not null |
 | `total_amount`    | `numeric`   | not null |
 
-## Data
+# Data
 
-## Customer data
+### Customer data
 
 | customer_id | customer_name   | address    | phone_no   | cart_id |
 | ----------- | --------------- | ---------- | ---------- | ------- |
@@ -83,7 +84,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 | 4           | Le Thi D        | Da Nang    | 0903221122 |         |
 | 5           | Tran Van C      | Hai Phong  | 0911223344 |         |
 
-## Product data
+### Product data
 
 | product_id | name_product  | type | size | quantity | price  |
 | ---------- | ------------- | ---- | ---- | -------- | ------ |
@@ -101,10 +102,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 # Câu 2
 
 ## LESS_THAN
+#### Request: http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
 
-    http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
-
-### Kết quả
+#### Kết quả
 
 ```json
 {
@@ -133,9 +133,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ## GREATER_THAN
 
-    http://localhost:8080/api/products/?price=490000&condition=GREATER_THAN
+#### Request: http://localhost:8080/api/products/?price=490000&condition=GREATER_THAN
 
-### Kết quả
+#### Kết quả
 
 ```json
 {
@@ -156,9 +156,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ## EQUAL
 
-    http://localhost:8080/api/products/?price=120000&condition=EQUAL
+#### Request: http://localhost:8080/api/products/?price=120000&condition=EQUAL
 
-### Kết quả
+#### Kết quả
 
 ```json
 {
@@ -187,9 +187,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ## Exception
 
-### 1. Không tìm thấy
+### 1. Không tìm thấy product
 
-    http://localhost:8080/api/products/?price=1000&condition=EQUAL
+#### Request: http://localhost:8080/api/products/?price=1000&condition=EQUAL
 
 #### Kết quả
 
@@ -202,7 +202,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ### 2. Giá tiền không hợp lệ
 
-    http://localhost:8080/api/products/?price=-1&condition=EQUAL
+#### Request: http://localhost:8080/api/products/?price=-1&condition=EQUAL
 
 #### Kết quả
 
@@ -215,7 +215,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ### 3. Điều kiện không hợp lệ
 
-    http://localhost:8080/api/products/?price=10000&condition=EQUALL
+#### Request: http://localhost:8080/api/products/?price=10000&condition=EQUALL
 
 #### Kết quả
 
