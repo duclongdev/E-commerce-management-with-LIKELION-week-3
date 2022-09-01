@@ -1,6 +1,6 @@
 # E-commerce-management-with-LIKELION-week-3
 ## APIs
-1. [Customer APIs](#customer-apis)
+1. [Customer APIs]
    1. [GET - Get customers](#get---get-customers)
    2. [POST - Create new customer](#post---create-new-customer)
 2. [Product APIs](#product-apis)
