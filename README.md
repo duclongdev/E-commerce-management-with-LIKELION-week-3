@@ -6,7 +6,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 - [Customer](#customer)
 - [Product](#product)
 - [Cart](#cart)
-- [Cart_item](#cart_item)
+- [Cart_item](###cart_item)
 #### 1. [Data](#data)
  - [Cusomer](#customer)
  - [Product](#product)
