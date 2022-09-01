@@ -1,4 +1,4 @@
-# E-commerce
+ # E-commerce-management project with LIKELION week 3 (2-9-2022)
 
 Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce
 
@@ -190,7 +190,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 ### 1. Không tìm thấy product
 
 #### Request: http://localhost:8080/api/products/?price=1000&condition=EQUAL
-
+_Chú ý: priduct_id phải thuộc 1-10_
 #### Kết quả
 
 ```json
@@ -203,6 +203,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 ### 2. Giá tiền không hợp lệ
 
 #### Request: http://localhost:8080/api/products/?price=-1&condition=EQUAL
+_Chú ý: Giá tiền phải phù hợp với dữ liệu_([Xem dữ liệu](#data))
 
 #### Kết quả
 
@@ -216,7 +217,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 ### 3. Điều kiện không hợp lệ
 
 #### Request: http://localhost:8080/api/products/?price=10000&condition=EQUALL
-
+_Chú ý: giá trị `condition` phải là `LESS_THAN`, `GREATER_THAN`, `EQUALEQUAL`
 #### Kết quả
 
 ```json
@@ -287,6 +288,7 @@ select * from customer_where customer_id =5;
 ### 1. Không tồn tại customer_id
 
 #### Request: http://localhost:8080/api/cart/100 (customer_id = 100)
+_Chú ý: customer_id chỉ từ 1-5_
 
 ```json
 {
@@ -299,7 +301,7 @@ select * from customer_where customer_id =5;
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body
+#### Request body (_chú ý: số lượng tại product_id = 7 là bằng 0_)
 
 ```json
 [
@@ -323,11 +325,11 @@ select * from customer_where customer_id =5;
 }
 ```
 
-### 3. Không tồn tại `product_id`
+### 3. Không tồn tại `product_id` 
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body
+#### Request body (_Chú ý: chỉ tồn tại product_id từ 0 - 10_)
 
 ```json
 [
@@ -355,7 +357,7 @@ select * from customer_where customer_id =5;
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body:
+#### Request body: (_Chú ý: Số lượng sản phẩm tại product_id chỉ còn lại 3_)
 
 ```json
 [
