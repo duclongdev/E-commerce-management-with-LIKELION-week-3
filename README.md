@@ -301,7 +301,8 @@ _Chú ý: customer_id chỉ từ 1-5_
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body (_chú ý: số lượng tại product_id = 7 là bằng 0_)
+#### Request body 
+_chú ý: số lượng tại product_id = 7 là bằng 0_
 
 ```json
 [
@@ -329,7 +330,8 @@ _Chú ý: customer_id chỉ từ 1-5_
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body (_Chú ý: chỉ tồn tại product_id từ 0 - 10_)
+#### Request body 
+_Chú ý: chỉ tồn tại product_id từ 0 - 10_
 
 ```json
 [
@@ -357,7 +359,8 @@ _Chú ý: customer_id chỉ từ 1-5_
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body: (_Chú ý: Số lượng sản phẩm tại product_id chỉ còn lại 3_)
+#### Request body: 
+_Chú ý: Số lượng sản phẩm tại product_id chỉ còn lại 3_
 
 ```json
 [
