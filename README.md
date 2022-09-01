@@ -174,3 +174,133 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
     "data": "Condition = EQUALL argument invalid"
 }
 ```
+
+# Câu 3
+## Thêm danh sách sản phẩm (product_id, quantity) vào cart với đối số truyền vào là customer_id
+
+#### Request: http://localhost:8080/api/cart/5 (`customer_id = 5`)
+
+#### Request body:
+```json
+[
+    {
+        "product_id": 7,
+        "quantity_wished": 1
+    },
+    {
+        "product_id": 3,
+        "quantity_wished": 2
+    }
+]
+```
+#### kết quả
+```json
+{
+    "httpStatus": "OK",
+    "message": "Create cart successfully",
+    "data": [
+        {
+            "product_id": 7,
+            "cart_id": 5,
+            "quantity_wished": 1,
+            "total_amount": 120000
+        },
+        {
+            "product_id": 3,
+            "cart_id": 5,
+            "quantity_wished": 2,
+            "total_amount": 140000
+        }
+    ]
+}
+```
+## Update `cart_id` vào customer
+```sql 
+select * from customer_where customer_id =5; 
+```
+#### Kết quả
+| customer_id | customer_name |  address  |       phone_no       | cart_id|
+|-------------|---------------|-----------|----------------------|---------|
+|           5 | Tran Van C    | Hai Phong | 0911223344           |       5|
+
+## Exception
+### 1. Không tồn tại customer_id 
+
+#### Request: http://localhost:8080/api/cart/100 (customer_id = 100)
+```json
+{
+    "httpStatus": "NOT_FOUND",
+    "data": "Customer with id = 100 not exists"
+}
+```
+### 2. Số lượng sản phẩm không hợp lệ
+
+#### Request: http://localhost:8080/api/cart/5
+#### Request body
+```json
+[
+    {
+        "product_id": 7,
+        "quantity_wished": 0
+    },
+    {
+        "product_id": 3,
+        "quantity_wished": 2
+    }
+] 
+```
+#### Kết quả
+```json
+{
+    "httpStatus": "BAD_REQUEST",
+    "data": "Quantity of Product with id = 7 must be greater than 0"
+}
+```
+
+### 3. Không tồn tại `product_id` 
+
+#### Request: http://localhost:8080/api/cart/5
+#### Request body
+```json
+[
+    {
+        "product_id": 11,
+        "quantity_wished": 2
+    },
+    {
+        "product_id": 3,
+        "quantity_wished": 2
+    }
+]
+```
+#### Kết quả
+
+```json
+{
+    "httpStatus": "NOT_FOUND",
+    "data": "Product by id = 11 not exists"
+}
+```
+### 4. Out of stock!!!!
+#### Request: http://localhost:8080/api/cart/5
+#### Request body: 
+```json
+[
+    {
+        "product_id": 1,
+        "quantity_wished": 4
+    },
+    {
+        "product_id": 3,
+        "quantity_wished": 2
+    }
+]
+```
+#### Kết quả
+```json
+{
+    "httpStatus": "BAD_REQUEST",
+    "data": "Out of stock! quantity wished of product with id 1 must be less than 3"
+}
+```
+
