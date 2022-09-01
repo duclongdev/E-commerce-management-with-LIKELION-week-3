@@ -11,7 +11,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 - [Cusomer data](#customer-data)
 - [Product data](#product-data)
 #### 2. [Viết api lấy tất cả sản phẩm với điều kiện(LESS_THAN, GREATER_THAN, EUQAL) ](#Câu-2)
-- [LESS_THAN](#less-than)
+- [LESS_THAN](#less_than)
 - [GREATER_THAN](#greater_than)
 - [EQUAL](#equal)
 - [Exception](#exception)
@@ -156,7 +156,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
     "data": "Product not exists"
 }
 ```
-### 2. Giá tiền khôn hợp lệ
+### 2. Giá tiền không hợp lệ
     http://localhost:8080/api/products/?price=-1&condition=EQUAL
 #### Kết quả
 ```json
