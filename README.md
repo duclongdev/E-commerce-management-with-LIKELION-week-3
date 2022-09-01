@@ -2,22 +2,22 @@
 
 Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce
 # Mục lục
-#### [Tables](#tables)
+## [Tables](#tables)
 - [Customer](#1-customer)
 - [Product](#2-product)
 - [Cart](#3-cart)
 - [Cart_item](#4-cart_item)
-#### 1. [Data](#data)
+## 1. [Data](#data)
 - [Cusomer data](#customer-data)
 - [Product data](#product-data)
-#### 2. [Viết api lấy tất cả sản phẩm với điều kiện(LESS_THAN, GREATER_THAN, EUQAL) ](#Câu-2)
+## 2. [Viết api lấy tất cả sản phẩm với điều kiện(LESS_THAN, GREATER_THAN, EUQAL) ](#Câu-2)
 - [LESS_THAN](#less_than)
 - [GREATER_THAN](#greater_than)
 - [EQUAL](#equal)
 - [Exception](#exception)
-#### 3. [Viết một api với chức năng thêm cart bằng tham số `customer_id` của Customer](#Câu-3)
-#### 4. [Thực hiện gọi lại api số 3](#Câu-4)
-#### 5. [Viết một api lấy danh sách thoong tin của item theo **Cart** theo tham số `customer_id`](#Câu-5)
+## 3. [Viết một api với chức năng thêm cart bằng tham số `customer_id` của Customer](#Câu-3)
+## 4. [Thực hiện gọi lại api số 3](#Câu-4)
+## 5. [Viết một api lấy danh sách thoong tin của item theo **Cart** theo tham số `customer_id`](#Câu-5)
 # Tables
 ### 1. Customer
 | Column            | Type                     | Nullable |
