@@ -1,9 +1,4 @@
 
-# E-commerce
-
-Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce
-
-
 # Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce (02-09-2022)
 
 
