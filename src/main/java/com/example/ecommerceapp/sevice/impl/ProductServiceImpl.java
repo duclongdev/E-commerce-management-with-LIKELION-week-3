@@ -23,6 +23,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ResponseEntity<?> findByPriceAndCondition(BigDecimal price, String condition) {
+        checkPrice(price);
         List<Product> products = new ArrayList<>();
         switch (condition){
             case "LESS_THAN":
@@ -35,13 +36,20 @@ public class ProductServiceImpl implements ProductService {
                 products = productRepo.findByPriceAndConditionEqual(price);
                 break;
             default:
-                throw new IllegalException(condition);
+                throw new IllegalException(String.format("Condition = %s", condition));
         }
         if(products.size() != 0)
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseObject(HttpStatus.OK,
                     "Query data successfully", products));
         throw new NotFoundException(TableName.Name.PRODUCT);
     }
+
+    private void checkPrice(BigDecimal price) {
+        if(price.compareTo(BigDecimal.ZERO) == 1)
+            return;
+        throw new IllegalException(String.format("price = %s", String.valueOf(price)));
+    }
+
     @Override
     public BigDecimal getPriceById(Long product_id) {
         return productRepo.selectPriceById(product_id);

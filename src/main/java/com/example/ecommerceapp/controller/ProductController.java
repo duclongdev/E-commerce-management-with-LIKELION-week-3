@@ -14,9 +14,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("{price}")
-    public ResponseEntity<?> FindByPriceAndCondition(@PathVariable BigDecimal price,
-                                                     @RequestParam(value = "condition", required = false) String condition) {
+    @GetMapping()
+    public ResponseEntity<?> FindByPriceAndCondition( @RequestParam(value = "price", required = true) BigDecimal price,
+                                                      @RequestParam(value = "condition", required = true) String condition) {
         return productService.findByPriceAndCondition(price, condition);
     }
 }
