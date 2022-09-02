@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 # E-commerce
 
 Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce
 
+=======
+# Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce (02-09-2022)
+
+>>>>>>> 68b56445e1840b999190697b955b81b88a71d634
 # Mục lục
 
 ## [Tables](#tables)
