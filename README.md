@@ -1,6 +1,4 @@
-# E-commerce
-
-Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce
+# Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce (02-09-2022)
 
 # Mục lục
 
@@ -34,6 +32,8 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 - [Nếu đã có item trong cart, thực hiện tính toán và cập nhật lại item đó trong cart](#nếu-đã-có-item-trong-cart-thực-hiện-tính-toán-và-cập-nhật-lại-item-đó-trong-cart)
 
 ## 5. [Viết một api lấy danh sách thông tin của item theo **Cart** theo tham số `customer_id`](#Câu-5)
+
+- [Tham số truyền vào bao gồm customer_id, name_product, offset, limit ](#tham-số-truyền-vào-bao-gồm-customer_id-name_product-offset-limit)
 
 # Tables
 
@@ -105,7 +105,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ## LESS_THAN
 
-#### Request: http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
+#### Request: `GET` - http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
 
 #### Kết quả
 
@@ -136,7 +136,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ## GREATER_THAN
 
-#### Request: http://localhost:8080/api/products/?price=490000&condition=GREATER_THAN
+#### Request: `GET` - http://localhost:8080/api/products/?price=490000&condition=GREATER_THAN
 
 #### Kết quả
 
@@ -159,7 +159,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ## EQUAL
 
-#### Request: http://localhost:8080/api/products/?price=120000&condition=EQUAL
+#### Request: `GET` - http://localhost:8080/api/products/?price=120000&condition=EQUAL
 
 #### Kết quả
 
@@ -192,7 +192,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ### 1. Không tìm thấy product
 
-#### Request: http://localhost:8080/api/products/?price=1000&condition=EQUAL
+#### Request: `GET` - http://localhost:8080/api/products/?price=1000&condition=EQUAL
 
 _Chú ý: priduct_id phải thuộc 1-10_
 
@@ -222,7 +222,7 @@ _Chú ý: Giá tiền phải phù hợp với dữ liệu_([Xem dữ liệu](#da
 
 ### 3. Điều kiện không hợp lệ
 
-#### Request: http://localhost:8080/api/products/?price=10000&condition=EQUALL
+#### Request: `GET` - http://localhost:8080/api/products/?price=10000&condition=EQUALL
 
 \_Chú ý: giá trị `condition` phải là `LESS_THAN`, `GREATER_THAN`, `EQUALEQUAL`
 
@@ -239,7 +239,7 @@ _Chú ý: Giá tiền phải phù hợp với dữ liệu_([Xem dữ liệu](#da
 
 ## Thêm danh sách sản phẩm (product_id, quantity) vào cart với đối số truyền vào là customer_id
 
-#### Request: http://localhost:8080/api/cart/5 (`customer_id = 5`)
+#### Request: `POST` - http://localhost:8080/api/cart/5 (`customer_id = 5`)
 
 #### Request body:
 
@@ -295,7 +295,7 @@ select * from customer_where customer_id =5;
 
 ### 1. Không tồn tại customer_id
 
-#### Request: http://localhost:8080/api/cart/100 (customer_id = 100)
+#### Request: `POST` - http://localhost:8080/api/cart/100 (customer_id = 100)
 
 _Chú ý: customer_id chỉ từ 1-5_
 
@@ -308,7 +308,7 @@ _Chú ý: customer_id chỉ từ 1-5_
 
 ### 2. Số lượng sản phẩm không hợp lệ
 
-#### Request: http://localhost:8080/api/cart/5
+#### Request: `POST` - http://localhost:8080/api/cart/5
 
 #### Request body (_chú ý: số lượng tại product_id = 7 là bằng 0_)
 
@@ -336,7 +336,7 @@ _Chú ý: customer_id chỉ từ 1-5_
 
 ### 3. Không tồn tại `product_id`
 
-#### Request: http://localhost:8080/api/cart/5
+#### Request: `POST` - http://localhost:8080/api/cart/5
 
 #### Request body (_Chú ý: chỉ tồn tại product_id từ 0 - 10_)
 
@@ -364,7 +364,7 @@ _Chú ý: customer_id chỉ từ 1-5_
 
 ### 4. Out of stock!!!!
 
-#### Request: http://localhost:8080/api/cart/5
+#### Request: `POST` - http://localhost:8080/api/cart/5
 
 #### Request body: (_Chú ý: Số lượng sản phẩm tại product_id chỉ còn lại 3_)
 
@@ -401,7 +401,7 @@ _Chú ý: customer_id chỉ từ 1-5_
 | 5       | 7          | 1               | 2022-09-01 23:34:25.031239 | 120000       |
 | 5       | 3          | 2               | 2022-09-01 23:34:25.07035  | 140000       |
 
-#### Request: http://localhost:8080/api/cart/5
+#### Request: `POST` - http://localhost:8080/api/cart/5
 
 #### Request body:
 
@@ -452,4 +452,57 @@ _Chú ý: customer_id chỉ từ 1-5_
   ]
 }
 ```
+
 # Câu 5
+
+### Tham số truyền vào bao gồm customer_id, name_product, offset, limit
+
+#### Dữ liệu:
+
+```sql
+ select pr.product_id, name_product, size, type, price, quantity_wished, cart_id
+ from product pr, cart_item ci
+ where pr.product_id = ci.product_id and cart_id = 5;
+```
+
+| product_id | name_product  | size | type | price  | quantity_wished | customer_idid |
+| ---------- | ------------- | ---- | ---- | ------ | --------------- | ------------- |
+| 4          | quan xanh     | L    | quan | 120000 | 5               | 5             |
+| 6          | quan den      | S    | quan | 170000 | 7               | 5             |
+| 7          | giay fake     | 36   | giay | 120000 | 6               | 5             |
+| 2          | ao thun       | XL   | ao   | 55000  | 7               | 5             |
+| 10         | giay the thao | 39   | giay | 170000 | 5               | 5             |
+| 3          | ao phong2     | S    | ao   | 70000  | 4               | 5             |
+
+#### Request: `GET` - http://localhost:8080/api/cart/?customer-id=5&product-name=ao&offset=0&limit=6
+
+| customer_id | product_name | offset | limit |
+| ----------- | ------------ | ------ | ----- |
+| 5           | ao           | 1      | 2     |
+
+#### Kết quả
+
+```json
+{
+  "httpStatus": "OK",
+  "message": "Show product success fully",
+  "data": [
+    {
+      "product_id": 10,
+      "name_product": "giay the thao",
+      "type": "giay ",
+      "size": "39 ",
+      "price": 170000,
+      "quantity_wished": 5
+    },
+    {
+      "product_id": 3,
+      "name_product": "ao phong2",
+      "type": "ao   ",
+      "size": "S  ",
+      "price": 70000,
+      "quantity_wished": 4
+    }
+  ]
+}
+```
