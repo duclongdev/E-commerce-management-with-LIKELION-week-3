@@ -1,4 +1,4 @@
- # E-commerce-management project with LIKELION week 3 (2-9-2022)
+# E-commerce
 
 Thực hiện các chức năng đơn giản với đề tài quản lý E-commerce
 
@@ -31,7 +31,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 
 ## 4. [Thực hiện gọi lại api số 3](#Câu-4)
 
-## 5. [Viết một api lấy danh sách thoong tin của item theo **Cart** theo tham số `customer_id`](#Câu-5)
+- [Nếu đã có item trong cart, thực hiện tính toán và cập nhật lại item đó trong cart](#nếu-đã-có-item-trong-cart-thực-hiện-tính-toán-và-cập-nhật-lại-item-đó-trong-cart)
+
+## 5. [Viết một api lấy danh sách thông tin của item theo **Cart** theo tham số `customer_id`](#Câu-5)
 
 # Tables
 
@@ -102,6 +104,7 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 # Câu 2
 
 ## LESS_THAN
+
 #### Request: http://localhost:8080/api/products/?price=100000&condition=LESS_THAN
 
 #### Kết quả
@@ -190,7 +193,9 @@ Thực hiện các chức năng đơn giản với đề tài quản lý E-comme
 ### 1. Không tìm thấy product
 
 #### Request: http://localhost:8080/api/products/?price=1000&condition=EQUAL
+
 _Chú ý: priduct_id phải thuộc 1-10_
+
 #### Kết quả
 
 ```json
@@ -203,6 +208,7 @@ _Chú ý: priduct_id phải thuộc 1-10_
 ### 2. Giá tiền không hợp lệ
 
 #### Request: http://localhost:8080/api/products/?price=-1&condition=EQUAL
+
 _Chú ý: Giá tiền phải phù hợp với dữ liệu_([Xem dữ liệu](#data))
 
 #### Kết quả
@@ -217,7 +223,9 @@ _Chú ý: Giá tiền phải phù hợp với dữ liệu_([Xem dữ liệu](#da
 ### 3. Điều kiện không hợp lệ
 
 #### Request: http://localhost:8080/api/products/?price=10000&condition=EQUALL
-_Chú ý: giá trị `condition` phải là `LESS_THAN`, `GREATER_THAN`, `EQUALEQUAL`
+
+\_Chú ý: giá trị `condition` phải là `LESS_THAN`, `GREATER_THAN`, `EQUALEQUAL`
+
 #### Kết quả
 
 ```json
@@ -288,6 +296,7 @@ select * from customer_where customer_id =5;
 ### 1. Không tồn tại customer_id
 
 #### Request: http://localhost:8080/api/cart/100 (customer_id = 100)
+
 _Chú ý: customer_id chỉ từ 1-5_
 
 ```json
@@ -301,8 +310,7 @@ _Chú ý: customer_id chỉ từ 1-5_
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body 
-_chú ý: số lượng tại product_id = 7 là bằng 0_
+#### Request body (_chú ý: số lượng tại product_id = 7 là bằng 0_)
 
 ```json
 [
@@ -326,12 +334,11 @@ _chú ý: số lượng tại product_id = 7 là bằng 0_
 }
 ```
 
-### 3. Không tồn tại `product_id` 
+### 3. Không tồn tại `product_id`
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body 
-_Chú ý: chỉ tồn tại product_id từ 0 - 10_
+#### Request body (_Chú ý: chỉ tồn tại product_id từ 0 - 10_)
 
 ```json
 [
@@ -359,8 +366,7 @@ _Chú ý: chỉ tồn tại product_id từ 0 - 10_
 
 #### Request: http://localhost:8080/api/cart/5
 
-#### Request body: 
-_Chú ý: Số lượng sản phẩm tại product_id chỉ còn lại 3_
+#### Request body: (_Chú ý: Số lượng sản phẩm tại product_id chỉ còn lại 3_)
 
 ```json
 [
@@ -383,3 +389,67 @@ _Chú ý: Số lượng sản phẩm tại product_id chỉ còn lại 3_
   "data": "Out of stock! quantity wished of product with id 1 must be less than 3"
 }
 ```
+
+# Câu 4:
+
+## Nếu đã có item trong cart thực hiện tính toán và cập nhật lại item đó trong cart
+
+#### cart lúc chưa thêm
+
+| cart_id | product_id | quantity_wished | date_added                 | total_amount |
+| ------- | ---------- | --------------- | -------------------------- | ------------ |
+| 5       | 7          | 1               | 2022-09-01 23:34:25.031239 | 120000       |
+| 5       | 3          | 2               | 2022-09-01 23:34:25.07035  | 140000       |
+
+#### Request: http://localhost:8080/api/cart/5
+
+#### Request body:
+
+```json
+[
+  {
+    "product_id": 4,
+    "quantity_wished": 5
+  },
+  {
+    "product_id": 6,
+    "quantity_wished": 7
+  }
+]
+```
+
+#### Kết quả
+
+```json
+{
+  "httpStatus": "OK",
+  "message": "Update cart successfully",
+  "data": [
+    {
+      "product_id": 7,
+      "cart_id": 5,
+      "quantity_wished": 1,
+      "total_amount": 120000
+    },
+    {
+      "product_id": 3,
+      "cart_id": 5,
+      "quantity_wished": 2,
+      "total_amount": 140000
+    },
+    {
+      "product_id": 4,
+      "cart_id": 5,
+      "quantity_wished": 5,
+      "total_amount": 600000
+    },
+    {
+      "product_id": 6,
+      "cart_id": 5,
+      "quantity_wished": 7,
+      "total_amount": 1190000
+    }
+  ]
+}
+```
+# Câu 5
