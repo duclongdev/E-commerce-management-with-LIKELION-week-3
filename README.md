@@ -467,7 +467,7 @@ _Chú ý: customer_id chỉ từ 1-5_
  where pr.product_id = ci.product_id and cart_id = 5;
 ```
 
-| product_id | name_product  | size | type | price  | quantity_wished | customer_idid |
+| product_id | name_product  | size | type | price  | quantity_wished | customer_id |
 | ---------- | ------------- | ---- | ---- | ------ | --------------- | ------------- |
 | 4          | quan xanh     | L    | quan | 120000 | 5               | 5             |
 | 6          | quan den      | S    | quan | 170000 | 7               | 5             |
