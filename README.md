@@ -4,8 +4,8 @@
 
 # Mục lục
 
-## [Tables](#tables)
-
+## [Database](#database)
+- [Diagram](#diagram)
 - [Customer](#1-customer)
 - [Product](#2-product)
 - [Cart](#3-cart)
@@ -37,7 +37,12 @@
 
 - [Tham số truyền vào bao gồm customer_id, name_product, offset, limit ](#tham-số-truyền-vào-bao-gồm-customer_id-name_product-offset-limit)
 
-# Tables
+# Database
+
+### Diagram
+```mermaid
+
+```
 
 ### 1. Customer
 
