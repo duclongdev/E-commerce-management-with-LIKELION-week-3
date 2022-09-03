@@ -42,18 +42,18 @@
 ### Diagram
 ```mermaid
 erDiagram  
- CUSTOMER ||--|| CART : "has"  
+ CUSTOMER ||--|| CART : ""  
  CUSTOMER {  
  long customer_id PK   
   string customer_name 
   string address
   string phone_no  
  }
- CART_ITEM}|--||  CART  : "1-n"
+ CART_ITEM}|--||  CART  : ""
  CART {
   int cart_id PK 
  }
- PRODUCT ||--o{ CART_ITEM : "1-n"
+ PRODUCT ||--o{ CART_ITEM : ""
  CART_ITEM {
   int quantity_wished
   date date_added
