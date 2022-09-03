@@ -41,6 +41,31 @@
 
 ### Diagram
 ```mermaid
+erDiagram  
+ CUSTOMER ||--|| CART : "has"  
+ CUSTOMER {  
+ long customer_id PK   
+  string customer_name 
+  string address
+  string phone_no  
+ }
+ CART_ITEM}|--||  CART  : "1-n"
+ CART {
+  int cart_id PK 
+ }
+ PRODUCT ||--o{ CART_ITEM : "1-n"
+ CART_ITEM {
+  int quantity_wished
+  date date_added
+  money total_amount
+ }
+ PRODUCT {
+  int product_id PK
+  string name_product
+  string type
+  string size
+  string price
+ }
 
 ```
 
@@ -201,7 +226,7 @@
 
 #### Request: `GET` - http://localhost:8080/api/products/?price=1000&condition=EQUAL
 
-_Chú ý: priduct_id phải thuộc 1-10_
+_Chú ý: product phải thuộc 1-10_
 
 #### Kết quả
 
